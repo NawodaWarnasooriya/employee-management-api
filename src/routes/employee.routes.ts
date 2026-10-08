@@ -8,16 +8,18 @@ import {
   deleteExistingEmployee,
 } from "../controllers/employee.controllers";
 
+import authMiddleware from "../middleware/authentication.middleware";
+
 const router = Router();
 
-router.get("/", getEmployees);
+router.get("/", authMiddleware, getEmployees);
 
-router.get("/:id", getEmployee);
+router.get("/:id", authMiddleware, getEmployee);
 
-router.post("/", createNewEmployee);
+router.post("/", authMiddleware, createNewEmployee);
 
-router.put("/:id", updateExistingEmployee);
+router.put("/:id", authMiddleware, updateExistingEmployee);
 
-router.delete("/:id", deleteExistingEmployee);
+router.delete("/:id", authMiddleware, deleteExistingEmployee);
 
 export default router;
